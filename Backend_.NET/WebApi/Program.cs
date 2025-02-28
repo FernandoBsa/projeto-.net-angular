@@ -21,6 +21,16 @@ public class Program
         
         builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
         
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("usuariosApp", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+        });
+        
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -29,11 +39,12 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
+        
+        app.UseCors("usuariosApp");
+        
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 
