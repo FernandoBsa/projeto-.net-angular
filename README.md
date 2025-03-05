@@ -33,9 +33,6 @@ Este projeto é um CRUD simples desenvolvido para praticar conhecimentos em back
     /models
     /pages
     /services
-  angular.json
-  package.json
-  tsconfig.app.json
 ```
 
 ## Como Executar o Projeto
