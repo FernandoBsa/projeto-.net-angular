@@ -43,9 +43,9 @@ public class UsuarioService : IUsuarioService
         return response;
     }
 
-    public async Task<ResponseModel<UsuarioListarDTO>> BuscarUsuarioPorId(Guid id)
+    public async Task<ResponseModel<Usuario>> BuscarUsuarioPorId(Guid id)
     {
-        ResponseModel<UsuarioListarDTO> response = new ResponseModel<UsuarioListarDTO>();
+        ResponseModel<Usuario> response = new ResponseModel<Usuario>();
 
         using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
         {
@@ -58,9 +58,7 @@ public class UsuarioService : IUsuarioService
                 return response;
             }
             
-            var usuario = _mapper.Map<UsuarioListarDTO>(usuarioBanco);
-            
-            response.Dados = usuario;
+            response.Dados = usuarioBanco;
             response.Mensagem = "Usuario listado com sucesso";
         }
         
